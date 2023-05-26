@@ -26,23 +26,6 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
-    # - uses: dharmakolla/s3-upload-action@master
-    - name: Upload S3
-      id: S3
-      with:
-        aws_key_id: ${{ secrets.AWS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        aws_bucket: ${{ secrets.AWS_BUCKET }}
-        source_dir: 'static'
-
-  #- name: Update deployment status
-  #    if: success()
-  #    uses: dharmakolla/deployment-status@releases/v1
-  
-    #- name : Status
-    #with:
-     #     token: ${{ secrets.GITHUB_TOKEN }}
-     #     target_url: https://aws-bucket.s3.ap-northeast-2.amazonaws.com/${{steps.S3.outputs.object_key}}/index.html
-      #    state: 'success'
-      #    deployment_id: ${{ steps.test.outputs.deployment_id }}
+      
+    - name: Deploy with Maven
+      run: mvn deploy
