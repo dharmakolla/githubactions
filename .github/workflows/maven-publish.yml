@@ -27,9 +27,13 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Use AWS code deploy to deploy the war file to AWS S3bucket
-      run: aws deploy create-deployment --application-name githubactions --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name githubactions_DG --description "My github actions demo deployment" --s3-location bucket=dharmatejagithubactionsbucket,bundleType=zip,eTag=dd56cfdEXAMPLE8e768f9d77fEXAMPLE,key=GithubActionsApp.zip
+    # name: Use AWS code deploy to deploy the war file to AWS S3bucket
+    # run: aws deploy create-deployment --application-name githubactions --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name githubactions_DG --description "My github actions demo deployment" --s3-location bucket=dharmatejagithubactionsbucket,bundleType=zip,eTag=dd56cfdEXAMPLE8e768f9d77fEXAMPLE,key=GithubActionsApp.zip
 
+    - name: Deploy with Maven
+      run: mvn deploy -s pom.xml
+      
+      
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
