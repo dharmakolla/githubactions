@@ -11,8 +11,8 @@
 	<distributionManagement>
 		<repository>
 			<id> github</id>
-			<name> githubactionsdemo></name>
-			<url> https://github.com/dharmakolla/githubactionsdemo</url>
+			<name> githubactions></name>
+			<url> https://github.com/dharmakolla/githubactions</url>
 		</repository>
 	</distributionManagement>
 	<groupId>com.example</groupId>
