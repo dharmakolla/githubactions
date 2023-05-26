@@ -29,10 +29,16 @@ jobs:
       
     # - name: Deploy with Maven
     #  run: mvn deploy
+    
+    - name: print the current working directory
+      run: pwd
+      
+    - name: list files in current directory
+      run: ls -l
+      
 
     - name: Copy war file to AWS S3 bucket
-      run: ls -l
-        aws s3 cp *.war s3://dharmatejagithubactionsbucket/githubactionswar/
+      run: aws s3 cp *.war s3://dharmatejagithubactionsbucket/githubactionswar/
       working-directory: /var/www/
     
     
