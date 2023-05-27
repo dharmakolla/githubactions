@@ -28,7 +28,7 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Deploy with Maven
-      run: mvn spring-boot:run
+      run: mvn --batch-mode spring-boot:run
     
     - name: print the current working directory
       run: pwd
