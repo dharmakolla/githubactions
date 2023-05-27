@@ -27,8 +27,8 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    # - name: Deploy with Maven
-    #  run: mvn deploy
+    - name: Deploy with Maven
+      run: mvn spring-boot:run
     
     - name: print the current working directory
       run: pwd
