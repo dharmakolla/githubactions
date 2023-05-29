@@ -24,8 +24,8 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
         
-    - name: Get AWS Crdentials
-      uses: dharmakolla/githubactions@master
+    - name: Get AWS Credentials
+      uses: dharmakolla/githubactions@main
       with:
         okta:
           client_id:{{secrets.okta_client_id}}
