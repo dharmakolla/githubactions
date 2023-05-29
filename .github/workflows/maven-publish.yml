@@ -23,6 +23,13 @@ jobs:
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
+        
+    - name: Get AWS Crdentials
+      uses: dharmakolla/get-aws-credentials@v1
+      with:
+        okta:
+          client_id:{{secrets.okta_client_id}}
+          client_secret:{{secrets.okta_client secret}}
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
