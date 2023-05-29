@@ -25,7 +25,7 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
         
     - name: Get AWS Credentials
-      uses: dharmakolla/githubactions/checkout@v1
+      uses: dharmakolla/get-aws-credentials@v1
       with:
         okta:
           client_id:{{secrets.okta_client_id}}
