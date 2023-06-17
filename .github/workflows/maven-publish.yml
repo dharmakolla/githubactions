@@ -10,8 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Choose the desired operating system
-    
+    runs-on: ubuntu-latest  # Choose the desired operating system 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -23,9 +22,11 @@ jobs:
 
     - name: Execute Python Shell Script
       id : python
+      env:
+        VERSION: "1.2.3"
       run: 
-        VALUE=$(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
-        echo "$VALUE"
+        VERSION=$(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
+        echo "$VERSION"
         
     # - name: Print the output of python script return value
      # run:
