@@ -22,4 +22,4 @@ jobs:
         python-version: 3.x  # Replace with the desired Python version
 
     - name: Execute Python Shell Script
-      run: python ${{github_workspace}}'../.github/workflows/increment_version.py' 1.2.3  # Replace with the path to your Python shell script
+      run: python ${{github.workspace}}'../.github/workflows/increment_version.py' "1.2.3"  # Replace with the path to your Python shell script
