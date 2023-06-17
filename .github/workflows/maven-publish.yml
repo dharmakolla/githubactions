@@ -23,7 +23,7 @@ jobs:
     - name: Execute Python Shell Script
       id : python
       run: 
-        $(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
+        python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3"
         
     - name: Assign Python return value
       run: 
