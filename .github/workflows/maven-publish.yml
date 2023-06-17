@@ -22,11 +22,16 @@ jobs:
 
     - name: Execute Python Shell Script
       id : python
-      env:
-        VERSION: "1.2.3"
       run: 
-        VERSION="$(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")"
-        echo "$VERSION"
+        $(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
+        
+    - name: Assign Python return value
+      run: 
+        echo "RESULT=${{ steps.python.outputs.result }}" >> $GITHUB_ENV
+        
+    - name: Print Python return value
+      run: echo $RESULT
+
         
     # - name: Print the output of python script return value
      # run:
