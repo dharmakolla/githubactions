@@ -1,63 +1,25 @@
-# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
-
-name: Maven Package
+name: Python Shell Script
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - main  # Replace with the branch you want to trigger the action on
+  pull_request:
+    branches:
+      - main  # Replace with the branch you want to trigger the action on
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
+    runs-on: ubuntu-latest  # Choose the desired operating system
+    
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        java-version: '17'
-        distribution: 'temurin'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
-        
-    - uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws_region: 'us-east-1'
-    
-      
-    # - name: Configure AWS credential
-        #aws-region: 'us-east-1'
-        
-    #- name: Get AWS Credentials
-    #  uses: dharmakolla/get-aws-credentials@v1
-    #  with:
-    #    okta:
-    #      client_id:{{secrets.okta_client_id}}
-    #      client_secret:{{secrets.okta_client secret}}
+        python-version: 3.x  # Replace with the desired Python version
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-      
-    - name: Deploy with Maven
-      run: mvn --batch-mode spring-boot:run
-    
-    - name: print the current working directory
-      run: pwd
-      
-    - name: list files in current directory
-      run: ls -l
-      
-
-    - name: Copy war file to AWS S3 bucket
-      run: aws s3 cp *.war s3://dharmatejagithubactionsbucket/githubactionswar/
-      working-directory: /var/www/
-    
-    
-    
-    
+    - name: Execute Python Shell Script
+      run: python ../increment_version.py  # Replace with the path to your Python shell script
