@@ -28,6 +28,6 @@ jobs:
         
     - name: Print the output of python script return value
       run:
-        echo "${{ steps.python.outputs.result }}" >> "$VERSION"
+        echo "${{ steps.python.outputs.result }}" >> $VERSION
         echo "$VERSION"
       
