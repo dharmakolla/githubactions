@@ -24,7 +24,8 @@ jobs:
     - name: Execute Python Shell Script
       id : python
       run: 
-        echo $(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
+        $(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3") >> "$VALUE"
+        echo "$VALUE"
         
     # - name: Print the output of python script return value
      # run:
