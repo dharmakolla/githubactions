@@ -24,6 +24,9 @@ jobs:
     - name: Execute Python Shell Script
       run: 
         $(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
-        VERSION="${{ steps.python.outputs.result }}"
+        
+    - name: Print the output of python script return value
+      run:
+        VERSION="${{ steps.python.outputs.result }}" >> $VERSION
         echo "$VERSION"
       
