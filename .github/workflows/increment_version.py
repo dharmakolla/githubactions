@@ -1,25 +1,20 @@
-name: Python Shell Script
+import sys
 
-on:
-  push:
-    branches:
-      - main  # Replace with the branch you want to trigger the action on
-  pull_request:
-    branches:
-      - main  # Replace with the branch you want to trigger the action on
+def increment_version(version):
+    # Split the version string into individual components
+    components = version.split('.')
 
-jobs:
-  build:
-    runs-on: ubuntu-latest  # Choose the desired operating system
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    # Convert each component to an integer
+    components = [int(comp) for comp in components]
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x  # Replace with the desired Python version
+    # Increment the last component
+    components[-1] += 1
 
-    - name: Execute Python Shell Script
-      run: python path/to/your/script.py  # Replace with the path to your Python shell script
+    # Join the components back into a string
+    new_version = '.'.join(str(comp) for comp in components)
+
+    return new_version
+
+current_version = sys.argv[1]
+new_version = increment_version(current_version)
+print(new_version)
