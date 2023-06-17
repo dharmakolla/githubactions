@@ -25,5 +25,5 @@ jobs:
       run: 
         $(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
         VERSION="${{ steps.python.outputs.result }}"
-        echo $VERSION
+        echo "$VERSION"
       
