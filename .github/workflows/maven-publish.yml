@@ -25,7 +25,7 @@ jobs:
       env:
         VERSION: "1.2.3"
       run: 
-        VERSION=$(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")
+        VERSION='$(python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3")'
         echo "$VERSION"
         
     # - name: Print the output of python script return value
