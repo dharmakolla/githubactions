@@ -24,17 +24,7 @@ jobs:
       id : python
       run: 
         python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3"
-        
-    - name: Assign Python return value
-      run: 
-        echo "RESULT=${{ steps.python.outputs.result }}" >> $GITHUB_ENV
-        
-    - name: Print Python return value
-      run: echo $RESULT
-
-        
-    # - name: Print the output of python script return value
-     # run:
-         # "${{ steps.python.outputs.result }}" 
+        echo "RESULT=${{ steps.python.outputs.result }}" >> $GITHUB_EN
+        echo $RESULT
         
       
