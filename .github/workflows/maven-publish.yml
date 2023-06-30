@@ -33,7 +33,7 @@ jobs:
         aws-access-key-id: ${{ secrets.OKTA_CLIENT_ID }}
         aws-secret-access-key: ${{ secrets.OKTA_SECRET_ID }}
         aws-region: 'us-east-1'
-        role-to-assume: "arn:aws:iam::753984600943:user/dharmateja"
+        #role-to-assume: "arn:aws:iam::753984600943:user/dharmateja"
         
     - name: Build with Maven
       #run: mvn -B package --file pom.xml
