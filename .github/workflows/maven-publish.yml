@@ -15,17 +15,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x  # Replace with the desired Python version
+    #- name: Set up Python
+    #  uses: actions/setup-python@v2
+    #  with:
+    #    python-version: 3.x  # Replace with the desired Python version
 
-    - name: Execute Python Shell Script
-      id : python
-      run: 
-        python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3"
-        echo "RESULT=${{ steps.python.outputs.result }}" >> $GITHUB_ENV
-        echo $RESULT
+    # - name: Execute Python Shell Script
+    #  id : python
+    #  run: 
+    #    python ${{github.workspace}}'/.github/workflows/increment_version.py' "1.2.3"
+    #    echo "RESULT=${{ steps.python.outputs.result }}" >> $GITHUB_ENV
+    #    echo $RESULT
         
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
