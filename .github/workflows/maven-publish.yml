@@ -27,4 +27,19 @@ jobs:
         echo "RESULT=${{ steps.python.outputs.result }}" >> $GITHUB_ENV
         echo $RESULT
         
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: 'us-east-1'
+        
+    - name: Build with Maven
+      #run: mvn -B package --file pom.xml
+      run: mvn clean install
+
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       
