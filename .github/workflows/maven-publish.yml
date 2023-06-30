@@ -46,14 +46,14 @@ jobs:
       #run: mvn -B package --file pom.xml
       run: mvn clean install
 
-    # - name: Publish to GitHub Packages Apache Maven
-    #  run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-    #  env:
-    #    GITHUB_TOKEN: ${{ github.token }}
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
         
     - name: Execute AWS list buckets
       run: aws s3 ls
-      
+          
     - name: Execute aws code deploy
       run:
         aws deploy create-deployment \
