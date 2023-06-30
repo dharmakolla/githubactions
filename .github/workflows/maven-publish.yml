@@ -51,6 +51,15 @@ jobs:
     #  env:
     #    GITHUB_TOKEN: ${{ github.token }}
         
-    - name: Execute AWS Deploy
+    - name: Execute AWS list buckets
       run: aws s3 ls
+      
+    - name: Execute aws code deploy
+      run:
+        aws deploy create-deployment \
+        --application-name "WordPress_App" \
+        --deployment-config-name CodeDeployDefault.OneAtATime \
+        --deployment-group-name "WordPress_DG" \
+        --description "My demo deployment" \
+        --s3-location bucket=dharmatejagithubactionsbucket,bundleType=zip,eTag=dd56cfdEXAMPLE8e768f9d77fEXAMPLE,key=WordPressApp.zip
       
